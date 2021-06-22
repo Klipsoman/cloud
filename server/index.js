@@ -2,7 +2,6 @@ const express = require('express')  // фреймворк для упрощен�
 const mongoose = require('mongoose') // позволяет взаимодействовать с БД mongoDB
 const config = require('config') // конфиг
 const authRouter = require('./routes/auth.routes') // импортируем роутер
-
 const app = express()  // создаем сервер из express
 const PORT = config.get('serverPort') // получаем значение по ключу serverPort из config/default.json
 

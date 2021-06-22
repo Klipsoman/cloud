@@ -1,4 +1,3 @@
-const { Router } = require('express')
 const Router = require('express')
 const User = require('../models/User')
 const bcrypt = require('bcryptjs')  // модуль для хеширования пароля
@@ -28,7 +27,7 @@ async (req, res) => {
         }
         
         // получаем email и password из тела запроса
-        const {email, password} = res.body
+        const {email, password} = req.body
         // выполняем запрос при помощи findOne в базу данных 
         const candidate = await User.findOne({email})
         // если юзер с таким емейлом найден то попадаем в if. Так как емейл должен быть уникален
