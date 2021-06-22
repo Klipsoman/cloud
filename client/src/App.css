@@ -1,10 +1,21 @@
 html{
-    --main-color: #363636;
-    --main-bg-color: #d6d6d6;
+    --main-color: #333131;
+    --main-bg-color: #e4e0e0;
+    --second-bg-color: #ebebeb;
+    background-color: var(--main-bg-color);
 }
 *{
     box-sizing: border-box;
     padding: 0;
-    margin: 0;
-    background-color: var(--main-bg-color);
+    margin: 0;  
+    font-size: 18px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.container{
+    width: 1280px;
+    margin: 0 auto;
+    height: 100%;
+}
+.contentContainer{
+    height: 100vh;
 }

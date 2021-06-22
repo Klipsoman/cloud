@@ -1,0 +1,17 @@
+.navbar{
+    height: 70px;
+    width: 100%;
+    background-color: var(--second-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(--main-color);
+}
+.navbarLinks{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbarLinks div{
+    margin-right: 10px;
+}

@@ -4,7 +4,10 @@ const config = require('config') // конфиг
 const authRouter = require('./routes/auth.routes') // импортируем роутер
 const app = express()  // создаем сервер из express
 const PORT = config.get('serverPort') // получаем значение по ключу serverPort из config/default.json
+const corsMiddleware = require('./middleware/cors.middleware')//экспортируем созданный миддлвейр
 
+
+app.use(corsMiddleware)
 // по умолчанию express не может распарсить json строку. Поэтому указываем это явно:
 app.use(express.json()) 
 // 1 параметр юрл, по которомоу роутер будет обрабатываться, 2 параметр роутер
@@ -22,7 +25,7 @@ const start = async () => {
         })
 
     } catch (error) {
-        
+        console.log(error)
     }
 
 }
