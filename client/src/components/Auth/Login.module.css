@@ -1,0 +1,26 @@
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+}
+.loginContainer{
+    width: 450px;
+    height: 350px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--main-color);
+    background-color: var(--second-bg-color);
+}
+.loginContainer Input, .loginContainer button{
+    margin-top: 20px;
+}
+.loginContainer button{
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+}

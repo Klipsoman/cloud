@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import style from "./Registration.module.css";
+import style from "./Login.module.css";
 import Input from "../../utils/Input/Input";
-import { registartionApi } from "../../api/user";
+import {loginApi} from "../../api/user"
+import {useDispatch} from "react-redux"
 
-function Registration() {
+
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch()
+
   return (
-    <div className={style.registration}>
-      <div className={style.registrationContainer}>
-        <h3>Регистрация</h3>
+    <div className={style.login}>
+      <div className={style.loginContainer}>
+        <h3>Авторизация</h3>
         <Input
           type="text"
           placeholder="Введите email"
@@ -23,10 +27,10 @@ function Registration() {
           setValue={setPassword}
         />
         {/* <Input type="password" placeholder="Введите пароль еще раз"/> */}
-        <button onClick={(e)=>registartionApi(email, password)}>Зарегистрироваться</button>
+        <button onClick={()=>dispatch(loginApi(email, password))}>Войти</button>
       </div>
     </div>
   );
 }
 
-export default Registration;
+export default Login;

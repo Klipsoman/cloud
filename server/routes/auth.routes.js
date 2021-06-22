@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')  // модуль для хешировани�
 const config = require('config')
 const jwt = require('jsonwebtoken') // модуль для создания токена
 const {check, validationResult} = require('express-validator') // модуль для валидации полей приходящих данных
+const authMiddleware = require('../middleware/auth.middleware')
 
 const router = new Router() // создаем новый маршрут, объект Роутера
 
@@ -75,6 +76,26 @@ async (req, res) => {
           avatar: user.avatar
       })
 
+    } catch (error) {
+        console.log(error)
+        res.send({message: "Server error"})
+    }
+})
+
+router.get('/auth', authMiddleware, 
+
+async (req, res) => {
+    try {
+        const user = await User.findOne({_id: req.user.id})
+        const token = await jwt.sign({id:user.id}, config.get('secretKey'), {expiresIn: '1h'})
+        return res.json({
+            token,
+            id: user.id,
+            email: user.email,
+            diskSpace: user.diskSpace,
+            usedSpace: user.usedSpace,
+            avatar: user.avatar
+        })
     } catch (error) {
         console.log(error)
         res.send({message: "Server error"})
