@@ -28,7 +28,7 @@ async (req, res) => {
         
         // получаем email и password из тела запроса
         const {email, password} = req.body
-        // выполняем запрос при помощи findOne в базу данных 
+        // выполняем запрос при помощи findOne в базу данных, проверяем есть ли такой же email
         const candidate = await User.findOne({email})
         // если юзер с таким емейлом найден то попадаем в if. Так как емейл должен быть уникален
         if(candidate){
@@ -54,12 +54,13 @@ router.post('/login',
 async (req, res) => {
     try {
       const {email, password} = req.body
-      const user = User.findOne({email})
+      const user = await User.findOne({email})
         if(!user){
-            return res.status(404).json({message: `User with not found`})
+            return res.status(404).json({message: `User with email ${email} not found`})
         }
         // сравниваем зашифрованный и не зашифрованный пароль
-      const isPassValid = bcrypt.compareSync(password, user.password)
+        // функция compare сравнивает зашифрованный пароль с захешированным
+      const isPassValid = await bcrypt.compareSync(password, user.password)
       if(!isPassValid){
           return res.status(400).json({message: `Wrong password`})
       }
