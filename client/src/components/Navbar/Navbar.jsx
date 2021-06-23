@@ -10,7 +10,7 @@ function Navbar() {
 
   return (
     <div className={style.navbar}>
-      <div>Cloud App</div>
+      <div className={style.logotype}>Cloud App</div>
       <div className={style.navbarLinks}>
           
         {!isAuth && <div><NavLink to="login">LogIn</NavLink> </div>}

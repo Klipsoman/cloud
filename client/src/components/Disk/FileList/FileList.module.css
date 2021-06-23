@@ -1,0 +1,7 @@
+.filelist{
+    margin-top: 20px;
+}
+.filelistHeader{
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(2, 1fr);
+}

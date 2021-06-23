@@ -1,0 +1,16 @@
+.file{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 4fr repeat(2, 1fr);
+    border-bottom: 1px solid #da2323;
+    align-items: center;
+    transform: scale(1);
+    transition: .2s ease-in;
+}
+.file img {
+    width: 75px;
+}
+.file:hover{
+    transition: .2s ease-in;
+    transform: scale(1.01);
+}

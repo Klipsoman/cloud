@@ -5,6 +5,8 @@ const config = require('config')
 const jwt = require('jsonwebtoken') // модуль для создания токена
 const {check, validationResult} = require('express-validator') // модуль для валидации полей приходящих данных
 const authMiddleware = require('../middleware/auth.middleware')
+const fileService = require('../services/fileService')
+const File = require('../models/File')
 
 const router = new Router() // создаем новый маршрут, объект Роутера
 
@@ -41,6 +43,7 @@ async (req, res) => {
         // создаем нового юзера по модели User импортированной в самом верху
         const user = new User({email, password: hashPassword })
         await user.save()
+        await fileService.createDir(new File({user: user.id, name: ''}))
         return res.json({message: `User was created`})
 
     } catch (error) {

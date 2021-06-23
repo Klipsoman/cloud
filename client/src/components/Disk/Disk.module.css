@@ -1,0 +1,12 @@
+.navigation{
+    margin-top: 20px;
+}
+
+.navigation button {
+    padding: 10px 20px;
+    margin-left: 10px;
+}
+
+.navigation button:first-of-type{
+    margin-left: 0px;
+}

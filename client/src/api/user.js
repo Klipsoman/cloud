@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setCurrentDir } from "../reducers/fileReducer";
 import { setUser } from "../reducers/userReducer";
 
 export const registartionApi = async (email, password) => {
@@ -26,7 +27,6 @@ export const registartionApi = async (email, password) => {
             password,
           }
         );
-        console.log(res.data)
         dispatch(setUser(res.data))
         localStorage.setItem("token", res.data.token)
       } catch (error) {
@@ -39,8 +39,8 @@ export const authApi = () => async dispatch => {
         const res = await axios.get(
           "http://localhost:5000/api/auth/auth", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
-        console.log(res.data)
         dispatch(setUser(res.data))
+        console.log(res.data)
         localStorage.setItem("token", res.data.token)
       } catch (error) {
         alert(error);
