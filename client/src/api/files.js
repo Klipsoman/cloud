@@ -28,3 +28,29 @@ export const createFileApi = (dirId, name) => async (dispatch) => {
         alert(error.response.data.message)
     }
 } 
+
+export const uploadFileApi = (file, dirId) => async (dispatch) => {
+    try {
+        const formData = new FormData()
+        formData.append('file', file)
+        if(dirId){
+            formData.append('parent', file)
+        }
+        const res = await axios.post(`http://localhost:5000/api/files/upload`, formData, {
+            headers: {Authorization: 'Bearer ' + localStorage.getItem("token")},
+            onUploadProgress: progressEvent => {
+                const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
+                console.log('total', totalLength)
+                if (totalLength) {
+                    let progress = Math.round((progressEvent.loaded * 100) / totalLength)
+                    console.log(progress)
+                }
+            }
+            
+        })
+        dispatch(addFile(res.data))
+       
+    } catch (error) {
+        alert(error.response.data.message)
+    }
+} 

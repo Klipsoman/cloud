@@ -10,3 +10,22 @@
 .navigation button:first-of-type{
     margin-left: 0px;
 }
+
+.fileUploadInputBlock{
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 10px 20px;
+    display: inline-block;
+    border: 1px dashed white;
+    transition: .2s ease-in;
+}
+.fileUploadInputBlock:hover{
+    border: 1px solid white;
+    background-color: #efefef;
+    transition: .2s ease-in;
+    
+}
+
+.fileUploadInput{
+    display: none;
+}

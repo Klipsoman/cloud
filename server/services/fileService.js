@@ -5,7 +5,7 @@ const config = require('config')
 class FileService {
     createDir(file){
         const filePath = `${config.get('filePath')}\\${file.user}\\${file.path}`
-        return new Promise((resolve, reject)=>{
+        return new Promise(((resolve, reject)=>{
             try {
                 if(!fs.existsSync(filePath)){
                     fs.mkdirSync(filePath)
@@ -16,7 +16,7 @@ class FileService {
             } catch (error) {
                 return reject({message: 'File error'})
             }
-        })
+        }))
     }
 }
 

@@ -1,5 +1,6 @@
-const {Schema, model, ObjectId} = require('mongoose')  // импортируем схему и модель из модуля mongoose
-
+const {Schema, model} = require('mongoose')  // импортируем схему и модель из модуля mongoose
+const mongoose = require('mongoose')
+const ObjectId = mongoose.Types.ObjectId
 // создаем схему, в которой будет храниться информация о полях сущности
 // id создаются по умолчанию
 const User = new Schema({
@@ -10,7 +11,6 @@ const User = new Schema({
     avatar: {type: String},
     files: [{type: ObjectId, ref: 'File'}]
 })
-
 
 // экпортируем модель пользователя
 module.exports = model('User', User)

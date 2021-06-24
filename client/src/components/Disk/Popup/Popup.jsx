@@ -6,7 +6,7 @@ import { createFileApi } from "../../../api/files";
 
 function Popup(props) {
     const [text, setText] = useState('')
-    const currentDir = useSelector(state=>state.files.files.currentDir)
+    const currentDir = useSelector(state=>state.files.currentDir)
     const dispatch = useDispatch()
 
     function closePopup(){

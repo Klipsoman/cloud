@@ -1,5 +1,4 @@
 import axios from "axios";
-import { setCurrentDir } from "../reducers/fileReducer";
 import { setUser } from "../reducers/userReducer";
 
 export const registartionApi = async (email, password) => {

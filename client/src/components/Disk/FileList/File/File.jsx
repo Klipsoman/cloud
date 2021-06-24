@@ -8,13 +8,15 @@ import { pushToStack, setCurrentDir } from "../../../../reducers/fileReducer";
 function File({ file }) {
   const dispatch = useDispatch();
   const currentDir = useSelector((state) => state.files.currentDir);
+  console.log(file)
 
   function openFolder() {
     dispatch(pushToStack(currentDir));
-    dispatch(setCurrentDir(file._id));
+    dispatch(setCurrentDir(file._id)); 
   }
   return (
-    <div className={style.file} onClick={() => openFolder()}>
+    <div className={style.file}
+     onClick={file.type==='dir' ? openFolder : ()=> alert('The file cannot be opened')}>
       <img src={file.type === "dir" ? folderLogo : fileLogo} alt="" />
       <div>{file.name}</div>
       <div>{file.date.slice(0, 10)}</div>

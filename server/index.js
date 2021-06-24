@@ -1,13 +1,14 @@
 const express = require('express')  // фреймворк для упрощенной работы с Node.js, облегчает написание кода + плюшки
 const mongoose = require('mongoose') // позволяет взаимодействовать с БД mongoDB
 const config = require('config') // конфиг
+const fileUpload = require('express-fileupload') // модуль для загрузки файлов
 const authRouter = require('./routes/auth.routes') // импортируем роутер
 const fileRouter = require('./routes/file.routes') // импортируем роутер
 const app = express()  // создаем сервер из express
 const PORT = config.get('serverPort') // получаем значение по ключу serverPort из config/default.json
 const corsMiddleware = require('./middleware/cors.middleware')//экспортируем созданный миддлвейр
 
-
+app.use(fileUpload({}))
 app.use(corsMiddleware)
 // по умолчанию express не может распарсить json строку. Поэтому указываем это явно:
 app.use(express.json()) 
