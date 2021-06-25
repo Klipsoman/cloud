@@ -3,5 +3,5 @@
 }
 .filelistHeader{
     display: grid;
-    grid-template-columns: 1fr 4fr repeat(2, 1fr);
+    grid-template-columns: 1fr 4fr repeat(4, 1fr);
 }

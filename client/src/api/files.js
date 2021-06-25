@@ -34,7 +34,7 @@ export const uploadFileApi = (file, dirId) => async (dispatch) => {
         const formData = new FormData()
         formData.append('file', file)
         if(dirId){
-            formData.append('parent', file)
+            formData.append('parent', dirId)
         }
         const res = await axios.post(`http://localhost:5000/api/files/upload`, formData, {
             headers: {Authorization: 'Bearer ' + localStorage.getItem("token")},
@@ -54,3 +54,12 @@ export const uploadFileApi = (file, dirId) => async (dispatch) => {
         alert(error.response.data.message)
     }
 } 
+
+
+export const downloadFileApi = async (file) => {
+    try {
+        
+    } catch (error) {
+        alert(error.response.data.message)
+    }
+}

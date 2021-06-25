@@ -1,7 +1,7 @@
 .file{
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 1fr 4fr repeat(2, 1fr);
+    grid-template-columns: 1fr 4fr repeat(4, 1fr);
     border-bottom: 1px solid #da2323;
     align-items: center;
     transform: scale(1);
@@ -14,3 +14,8 @@
     transition: .2s ease-in;
     transform: scale(1.01);
 }
+.file button{
+    padding: 5px 10px;
+    cursor: pointer;
+}
+

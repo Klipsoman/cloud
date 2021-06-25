@@ -24,7 +24,8 @@ function Disk() {
     dispatch(setCurrentDir(backDir));
   }
   function uploadFileHandle(e){
-     dispatch(uploadFileApi(e.target.files[0], currentDir))
+    const files = [...e.target.files]
+     files.forEach(file=>dispatch(uploadFileApi(file, currentDir))) 
   }
 
   return (

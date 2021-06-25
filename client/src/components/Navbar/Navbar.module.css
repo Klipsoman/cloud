@@ -18,3 +18,11 @@
 .logotype{
     margin-left: 10px;
 }
+
+.navbarLinks h3 {
+    cursor: pointer;
+}
+
+.navbarLinks h3:hover {
+    color: brown;
+}
