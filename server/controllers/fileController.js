@@ -61,11 +61,15 @@ class FileController {
             file.mv(path)
 
             const type = file.name.split('.').pop()
+            let filePath = file.name
+            if(parent){
+                filePath = parent.name + '\\' + file.name
+            }
             const dbFile = new File({
                 name: file.name,
                 type,
                 size: file.size,
-                path: parent?.path,
+                path: filePath,
                 parent: parent?._id,
                 user: user._id
             })
@@ -84,7 +88,7 @@ class FileController {
     async downloadFile(req, res) {
         try {
             const file = await File.findOne({_id: req.query.id, user: req.user.id})
-            const path = `${config.get('filePath')}\\${req.user.id}\\${file.path}\\${file.name}`
+            const path = `${config.get('filePath')}\\${req.user.id}\\${file.path}`
             if(fs.existsSync(path)){
                 return res.download(path, file.name)
             }
@@ -92,6 +96,21 @@ class FileController {
         } catch (error) {
             console.log(error)
             return res.status(500).json({message: "Download error"})
+        }
+    }
+
+    async deleteFile(req, res){
+        try {
+            const file = await File.findOne({_id: req.query.id, user: req.user.id})
+            if(!file){
+                return res.status(400).json({message: 'file not found'})
+            }
+            fileService.deleteFile(file)
+            await file.remove()
+            return res.json({message: 'File deleted'})
+        } catch (error) {
+            console.log(error)
+            return res.status(400).json({message: "Delete error: dir is not empty"})
         }
     }
 

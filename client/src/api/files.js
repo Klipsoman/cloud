@@ -1,5 +1,6 @@
 import axios from "axios";
-import { addFile, setFiles } from "../reducers/fileReducer";
+import { addFile, deleteFile, setFiles } from "../reducers/fileReducer";
+import { setFileToUpload, setPercentLoaded, uploadVisible } from "../reducers/uploadReducer";
 
 export const getFilesApi = (dirId) => async (dispatch) => {
     try {
@@ -7,7 +8,6 @@ export const getFilesApi = (dirId) => async (dispatch) => {
             headers: {Authorization: 'Bearer ' + localStorage.getItem("token")}
         })
         dispatch(setFiles(res.data))
-        console.log(res.data)
     } catch (error) {
         alert(error.response.data.message)
     }
@@ -44,11 +44,15 @@ export const uploadFileApi = (file, dirId) => async (dispatch) => {
                 if (totalLength) {
                     let progress = Math.round((progressEvent.loaded * 100) / totalLength)
                     console.log(progress)
+                    dispatch(setPercentLoaded(progress))
                 }
             }
             
         })
         dispatch(addFile(res.data))
+        dispatch(uploadVisible())
+        dispatch(setFileToUpload(res.data.name))
+        console.log(res.data.name)
        
     } catch (error) {
         alert(error.response.data.message)
@@ -58,8 +62,31 @@ export const uploadFileApi = (file, dirId) => async (dispatch) => {
 
 export const downloadFileApi = async (file) => {
     try {
-        
+        const resBlob = await axios.get(`http://localhost:5000/api/files/download?id=${file._id}`, {
+            responseType: 'blob',
+            headers: {Authorization: 'Bearer ' + localStorage.getItem("token")}
+        })
+        const downloadUrl = window.URL.createObjectURL(resBlob.data)
+        const link = document.createElement('a')
+        link.href = downloadUrl
+        link.download = file.name
+        document.body.append(link)
+        link.click()  
+        link.remove();
+        window.URL.revokeObjectURL(downloadUrl);      
     } catch (error) {
-        alert(error.response.data.message)
+        alert(error)
+    }
+}
+
+export const deleteFileApi = (file) => async (dispatch) => {
+    try {
+        const res = await axios.delete(`http://localhost:5000/api/files?id=${file._id}`, {
+            headers: {Authorization: 'Bearer ' + localStorage.getItem("token")}
+        })
+        dispatch(deleteFile(file._id))
+        alert(res.data.message)
+    } catch (error) {
+        alert(error)
     }
 }

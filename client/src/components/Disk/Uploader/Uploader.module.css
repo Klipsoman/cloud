@@ -1,0 +1,25 @@
+.uploader{
+    width: 300px;
+    height: 150px;
+    border: 2px solid var(--main-color);
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    z-index: 999;
+    background-color: var(--second-bg-color);
+    overflow-y: auto;
+}
+.uploaderTitle{
+    text-align: center;
+    margin-top: 5px;
+}
+.uploaderBtn{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.uploaderBtn:hover{
+    color: brown;
+}

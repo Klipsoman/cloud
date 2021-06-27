@@ -39,7 +39,6 @@ export const authApi = () => async dispatch => {
           "http://localhost:5000/api/auth/auth", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
         dispatch(setUser(res.data))
-        console.log(res.data)
         localStorage.setItem("token", res.data.token)
       } catch (error) {
         alert(error);

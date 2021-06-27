@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { pushToStack, setCurrentDir } from "../../../../reducers/fileReducer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { deleteFileApi, downloadFileApi } from "../../../../api/files";
 
 function File({ file }) {
   const dispatch = useDispatch();
   const currentDir = useSelector((state) => state.files.currentDir);
-  console.log(file)
 
   function openFolder() {
     dispatch(pushToStack(currentDir));
@@ -20,11 +20,13 @@ function File({ file }) {
   function downloadFileHandler(e){
     e.preventDefault()
     e.stopPropagation()
+    downloadFileApi(file)
   }
 
   function deleteFileHandler(e){
     e.preventDefault()
     e.stopPropagation()
+    dispatch(deleteFileApi(file))
   }
 
   return (
