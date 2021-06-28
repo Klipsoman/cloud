@@ -6,7 +6,6 @@
     align-items: center;
     transform: scale(1);
     transition: .2s ease-in;
-    animation: fileopen 500ms forwards;
 }
 .file img {
     width: 75px;
@@ -18,16 +17,5 @@
 .file button{
     padding: 5px 10px;
     cursor: pointer;
-}
-
-@keyframes fileopen {
-    0%{
-        opacity: 0;
-        transform: translateY(50%);
-    }
-    100%{
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 

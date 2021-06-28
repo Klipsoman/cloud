@@ -4,7 +4,6 @@ import Input from "../../utils/Input/Input";
 import {loginApi} from "../../api/user"
 import {useDispatch} from "react-redux"
 
-
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,6 @@ function Login() {
           value={password}
           setValue={setPassword}
         />
-        {/* <Input type="password" placeholder="Введите пароль еще раз"/> */}
         <button onClick={()=>dispatch(loginApi(email, password))}>Войти</button>
       </div>
     </div>

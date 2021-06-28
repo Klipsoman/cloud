@@ -3,6 +3,9 @@
 }
 .navigation{
     margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, auto)) 3fr 1fr;
+    justify-items: right;
 }
 
 .navigation button {
@@ -33,4 +36,10 @@
 
 .fileUploadInput{
     display: none;
+}
+
+.filter{
+    padding: 10px;
+    margin-left: 10px;
+    grid-column-start: 5;
 }

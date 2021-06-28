@@ -7,6 +7,7 @@ import { pushToStack, setCurrentDir } from "../../../../reducers/fileReducer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDownload, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { deleteFileApi, downloadFileApi } from "../../../../api/files";
+import sizeFormat from "../../../../utils/sizeFormat/sizeFormat";
 
 function File({ file }) {
   const dispatch = useDispatch();
@@ -35,7 +36,7 @@ function File({ file }) {
       <img src={file.type === "dir" ? folderLogo : fileLogo} alt="" />
       <div>{file.name}</div>
       <div>{file.date.slice(0, 10)}</div>
-      <div>{file.size}</div>
+      <div>{sizeFormat(file.size)}</div>
       {file.type === 'dir' ? <div/> : <div><button onClick={downloadFileHandler} className={style.donwloadBtn}><FontAwesomeIcon icon={faDownload} /></button></div>}
       <div><button onClick={deleteFileHandler}><FontAwesomeIcon icon={faTrash} /></button></div>      
     </div>

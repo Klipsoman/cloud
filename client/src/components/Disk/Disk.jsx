@@ -8,6 +8,7 @@ import Popup from "./Popup/Popup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileUpload, faFolderPlus, faUndo,  } from "@fortawesome/free-solid-svg-icons";
 import Uploader from "./Uploader/Uploader";
+import Loader from "../../utils/Loader/Loader";
 
 
 function Disk() {
@@ -18,10 +19,14 @@ function Disk() {
   const isUploaderVisible = useSelector(state=>state.upload.visible)
   const uploaderFileName = useSelector(state=>state.upload.file)
   const uploaderFilePercent = useSelector(state=>state.upload.percentUploadingFile)
+  const [sort, setSort] = useState('type')
+  const loader = useSelector(state=>state.loader.show)
 
   useEffect(() => {
-    dispatch(getFilesApi(currentDir));
-  }, [currentDir]);
+    dispatch(getFilesApi(currentDir, sort));
+  }, [currentDir, sort]);
+
+
 
   function showPopup() {
     setIsPopupHidden(false);
@@ -34,6 +39,13 @@ function Disk() {
     const files = [...e.target.files]
      files.forEach(file=>dispatch(uploadFileApi(file, currentDir))) 
   }
+  function handleSelectChange(e){
+    setSort(e.target.value)
+  }
+
+  if(loader){
+    return <Loader />
+  }
 
   return (
     <div className={style.disk}>
@@ -44,6 +56,13 @@ function Disk() {
             <label htmlFor="fileUploadInput">Upload file <FontAwesomeIcon icon={faFileUpload}/></label>
             <input type="file" id="fileUploadInput" className={style.fileUploadInput} onChange={uploadFileHandle}/>
         </div>
+        <select onChange={handleSelectChange} className={style.filter} value={sort}>
+          <option value='date'>By date</option>
+          <option value='type'>By type</option>
+          <option value='name'>By name</option>
+          <option value='Size max'>By size: max</option>
+          <option value='Size min'>By size: min</option>
+        </select>
       </div>
       <FileList />
       {!isPopupHidden && <Popup closePopup={setIsPopupHidden} />}

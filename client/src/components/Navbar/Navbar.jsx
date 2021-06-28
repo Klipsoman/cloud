@@ -13,12 +13,14 @@ import {
 function Navbar() {
   const isAuth = useSelector((state) => state.user.isAuth);
   const dispatch = useDispatch();
+  const currentUserEmail = useSelector(state=>state.user.currentUser.email)
 
   return (
     <div className={style.navbar}>
       <div className={style.navbarFlexContainer}>
         <div className={style.logotype}>Cloud App</div>
         <div className={style.navbarLinks}>
+          {isAuth && <span style={{marginRight: 30 + 'px'}}>{currentUserEmail}</span>}
           {!isAuth && (
             <div>
               <NavLink to="login">

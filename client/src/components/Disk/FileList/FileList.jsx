@@ -8,6 +8,7 @@ function FileList() {
   files = files.map((file, i) => {
     return <File file={file} key={i} />;
   });
+
   return (
     <div className={style.filelist}>
       <div className={style.filelistHeader}>

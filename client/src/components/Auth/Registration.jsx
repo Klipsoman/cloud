@@ -6,6 +6,15 @@ import { registartionApi } from "../../api/user";
 function Registration() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+    
+  function registationHandleClick(){
+    if(password !== passwordRepeat){
+      alert("passwords don't match!")
+      return 
+    } 
+    registartionApi(email, password)
+  }
   return (
     <div className={style.registration}>
       <div className={style.registrationContainer}>
@@ -22,8 +31,17 @@ function Registration() {
           value={password}
           setValue={setPassword}
         />
-        {/* <Input type="password" placeholder="Введите пароль еще раз"/> */}
-        <button onClick={(e)=>registartionApi(email, password)}>Зарегистрироваться</button>
+        <Input
+          type="password"
+          placeholder="Введите пароль еще раз"
+          value={passwordRepeat}
+          setValue={setPasswordRepeat}
+        />
+        {password === passwordRepeat ? <span></span> : <span style={{color:'red'}}>Пароли не совпадают</span>}   
+
+        <button onClick={registationHandleClick}>
+          Зарегистрироваться
+        </button>
       </div>
     </div>
   );

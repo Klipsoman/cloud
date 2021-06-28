@@ -26,8 +26,8 @@ export const registartionApi = async (email, password) => {
             password,
           }
         );
-        dispatch(setUser(res.data))
         localStorage.setItem("token", res.data.token)
+        dispatch(setUser(res.data))    
       } catch (error) {
         alert(error);
       }
@@ -38,8 +38,8 @@ export const authApi = () => async dispatch => {
         const res = await axios.get(
           "http://localhost:5000/api/auth/auth", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
-        dispatch(setUser(res.data))
         localStorage.setItem("token", res.data.token)
+        dispatch(setUser(res.data))        
       } catch (error) {
         alert(error);
         localStorage.removeItem("token")
