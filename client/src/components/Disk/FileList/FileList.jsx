@@ -8,7 +8,7 @@ function FileList() {
   files = files.map((file, i) => {
     return <File file={file} key={i} />;
   });
-
+if(files.length === 0) return <div className={style.center}>файлы не найдены</div>
   return (
     <div className={style.filelist}>
       <div className={style.filelistHeader}>

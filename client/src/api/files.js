@@ -104,3 +104,14 @@ export const deleteFileApi = (file) => async (dispatch) => {
         alert(error)
     }
 }
+
+export const searchFilesApi = (search) => async (dispatch) => {
+    try {
+        const res = await axios.get(`http://localhost:5000/api/files/search?search=${search}`, {
+            headers: {Authorization: 'Bearer ' + localStorage.getItem("token")}
+        })
+        dispatch(setFiles(res.data))
+    } catch (error) {
+        alert(error)
+    }
+}

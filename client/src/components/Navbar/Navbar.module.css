@@ -47,3 +47,16 @@
 .navbarLinks h3:hover {
     color: brown;
 }
+.searchBlock{
+    position: relative;
+}
+.search{
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.searchLoop{
+    position: absolute;
+    transform: translate(0px, -50%);
+    top: 50%;
+    right: 10px;
+}

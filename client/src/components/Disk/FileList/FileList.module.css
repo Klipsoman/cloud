@@ -5,3 +5,9 @@
     display: grid;
     grid-template-columns: 1fr 4fr repeat(4, 1fr);
 }
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(90vh - 70px);
+}
