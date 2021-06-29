@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilesApi, uploadFileApi } from "../../api/files";
-import { setCurrentDir } from "../../reducers/fileReducer";
+import { changeView, setCurrentDir } from "../../reducers/fileReducer";
 import style from "./Disk.module.css";
 import FileList from "./FileList/FileList";
 import Popup from "./Popup/Popup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileUpload, faFolderPlus, faUndo,  } from "@fortawesome/free-solid-svg-icons";
+import { faFileUpload, faFolderPlus, faGripHorizontal, faList, faUndo,  } from "@fortawesome/free-solid-svg-icons";
 import Uploader from "./Uploader/Uploader";
 import Loader from "../../utils/Loader/Loader";
 
@@ -26,8 +26,6 @@ function Disk() {
     dispatch(getFilesApi(currentDir, sort));
   }, [currentDir, sort]);
 
-
-
   function showPopup() {
     setIsPopupHidden(false);
   }
@@ -42,6 +40,9 @@ function Disk() {
   function handleSelectChange(e){
     setSort(e.target.value)
   }
+  function handleChangeView(e){
+    dispatch(changeView(e.currentTarget.value))
+  }
 
   if(loader){
     return <Loader />
@@ -55,6 +56,10 @@ function Disk() {
         <div className={style.fileUploadInputBlock}>
             <label htmlFor="fileUploadInput">Upload file <FontAwesomeIcon icon={faFileUpload}/></label>
             <input type="file" id="fileUploadInput" className={style.fileUploadInput} onChange={uploadFileHandle}/>
+        </div>
+        <div className={style.view}>  
+        <button onClick={handleChangeView} value="list">  <FontAwesomeIcon icon={faList} size="lg"/></button>    
+        <button onClick={handleChangeView} value="tile">  <FontAwesomeIcon icon={faGripHorizontal} size="lg"/></button>
         </div>
         <select onChange={handleSelectChange} className={style.filter} value={sort}>
           <option value='date'>By date</option>

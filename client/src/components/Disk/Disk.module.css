@@ -11,6 +11,7 @@
 .navigation button {
     padding: 10px 20px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .navigation button:first-of-type{
@@ -21,7 +22,9 @@
     margin-left: 10px;
     cursor: pointer;
     padding: 10px 20px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px dashed white;
     transition: .2s ease-in;
 }
@@ -39,7 +42,19 @@
 }
 
 .filter{
-    padding: 10px;
+    cursor: pointer;
+    padding: 5px;
     margin-left: 10px;
+    grid-column-start: 6;
+    align-self: center;
+}
+
+.view{
     grid-column-start: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.view button{
+    padding: 3px 6px;  
 }

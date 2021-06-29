@@ -1,6 +1,6 @@
 .uploader{
     width: 300px;
-    height: 150px;
+    padding: 10px 30px 10px;
     border: 2px solid var(--main-color);
     position: fixed;
     bottom: 20px;

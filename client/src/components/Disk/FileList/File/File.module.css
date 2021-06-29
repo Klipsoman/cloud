@@ -19,3 +19,38 @@
     cursor: pointer;
 }
 
+.fileTile{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1);
+    transition: .2s ease-in;
+}
+.fileTile:hover{
+    transition: .2s ease-in;
+    transform: scale(1.1);
+    background-color: #d4d4d4; 
+    z-index: 100;
+}
+.fileTile img{
+    width: 130px;
+}
+.fileNameTile{
+    font-size: 14px;
+}
+.fileTile button{
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.fileButtonsTile{
+    margin-top: 10px;
+    opacity: 0;
+    transition: .2s ease-in;
+    display: flex;
+}
+.fileTile:hover .fileButtonsTile{
+    opacity: 1;
+    transition: .2s ease-in;
+}
