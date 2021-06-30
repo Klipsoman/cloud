@@ -11,6 +11,9 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { getFilesApi, searchFilesApi } from "../../api/files";
+import avatarLogo from "../../assets/imgs/avatarLogo.png"
+import UploadAvaPopup from "./UploadAvaPopup/UploadAvaPopup";
+import { API_URL } from "../../config.js";
 
 function Navbar() {
   const isAuth = useSelector((state) => state.user.isAuth);
@@ -19,6 +22,9 @@ function Navbar() {
   const [searchName, setSearchName] = useState("");
   const [timeToOut, setTimeToOut] = useState(false);
   const currentDir = useSelector((state) => state.files.currentDir);
+  const currentUser = useSelector(state=>state.user.currentUser)
+  const avatar = currentUser.avatar ? `${API_URL + currentUser.avatar}` : avatarLogo
+  const [isPopupHidden, setIsPopupHidden] = useState(true);
 
   function handleSearch(e) {
     setSearchName(e.target.value);
@@ -36,7 +42,7 @@ function Navbar() {
     }
   }
 
-  return (
+  return (<>
     <div className={style.navbar}>
       <div className={style.navbarFlexContainer}>
         <div className={style.logotype}>Cloud App</div>
@@ -54,6 +60,9 @@ function Navbar() {
         )}
 
         <div className={style.navbarLinks}>
+          {isAuth && <div className={style.avatarBlock} onClick={()=>setIsPopupHidden(false)}>
+              <img src={avatar} alt="" className={style.avatarImg}/>
+            </div>}
           {isAuth && (
             <span style={{ marginRight: 30 + "px" }}>{currentUserEmail}</span>
           )}
@@ -81,6 +90,8 @@ function Navbar() {
         </div>
       </div>
     </div>
+    {!isPopupHidden && <UploadAvaPopup closePopup={setIsPopupHidden}/>}
+    </>
   );
 }
 

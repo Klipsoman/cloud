@@ -12,6 +12,7 @@ app.use(fileUpload({}))
 app.use(corsMiddleware)
 // по умолчанию express не может распарсить json строку. Поэтому указываем это явно:
 app.use(express.json()) 
+app.use(express.static('static'))
 // 1 параметр юрл, по которомоу роутер будет обрабатываться, 2 параметр роутер
 app.use('/api/auth', authRouter)
 app.use('/api/files', fileRouter)

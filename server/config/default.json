@@ -2,5 +2,6 @@
     "serverPort": 5000,
     "dbUrl": "mongodb+srv://cloudUser:8hv-P4K-VKr-Psc@cloud.byhst.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "secretKey": "mern-secret-key",
-    "filePath": "C:\\MyApps\\cloud\\server\\files"
+    "filePath": "C:\\MyApps\\cloud\\server\\files",
+    "staticPath": "C:\\MyApps\\cloud\\server\\static"
 }

@@ -39,9 +39,37 @@ export const authApi = () => async dispatch => {
           "http://localhost:5000/api/auth/auth", {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
         );
         localStorage.setItem("token", res.data.token)
-        dispatch(setUser(res.data))        
+        dispatch(setUser(res.data))      
       } catch (error) {
         alert(error);
         localStorage.removeItem("token")
       }
 }
+
+export const uploadAvatarApi = (file) => async dispatch => {
+  try {
+      const formData = new FormData()
+      formData.append('file', file)
+      const res = await axios.post(
+        "http://localhost:5000/api/files/avatar", formData, 
+        {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+      ); 
+      dispatch(setUser(res.data))    
+    } catch (error) {
+      alert(error);
+    }
+}
+
+export const deleteAvatarApi = () => async dispatch => {
+  try {
+      const res = await axios.delete(
+        "http://localhost:5000/api/files/delete", 
+        {headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}}
+      ); 
+      dispatch(setUser(res.data))        
+    } catch (error) {
+      alert(error);
+    }
+}
+
+
